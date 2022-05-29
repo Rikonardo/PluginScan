@@ -28,13 +28,13 @@ fun printReport(report: CheckReport) {
     val description = report.description?.split("\n") ?: listOf()
     description.forEachIndexed { index, s ->
         if (index == description.lastIndex && report.entries.isEmpty()) {
-            println(colors.second(" ┗ $s"))
+            println(colors.second(" ╙ $s"))
         } else {
-            println(colors.second(" ┃ $s"))
+            println(colors.second(" ║ $s"))
         }
     }
     report.entries.forEachIndexed { index, entry ->
-        val char = if (index == report.entries.size - 1) "┗" else "┣"
+        val char = if (index == report.entries.size - 1) "╙" else "╟"
         when (entry) {
             is ReportEntry.In -> {
                 println(" ${colors.second(char)} ${brightMagenta("in")} ${brightWhite(entry.classLocation)}")

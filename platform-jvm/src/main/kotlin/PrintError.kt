@@ -12,9 +12,9 @@ fun printError(error: ScanError) {
         } step" +
         if (error.classFileName != null) " during scan of \"${brightWhite(error.classFileName!!)}\"" else ""
     ))
-    println(red(" ┣ ${error.exception::class.qualifiedName}: ${error.exception.message}"))
+    println(red(" ╟ ${error.exception::class.qualifiedName}: ${error.exception.message}"))
     error.exception.stackTrace.forEachIndexed { index, st ->
-        val char = if (index == error.exception.stackTrace.lastIndex) '┗' else '┃'
+        val char = if (index == error.exception.stackTrace.lastIndex) '╙' else '║'
         println(red(" $char ${magenta("at")} $st"))
     }
     println()

@@ -7,6 +7,7 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.default
 import java.io.File
+import java.io.PrintStream
 import java.util.*
 import java.util.zip.ZipEntry
 import java.util.zip.ZipFile
@@ -44,32 +45,41 @@ fun main(args: Array<String>) {
 }
 
 fun processFile(file: File, traceErrors: Boolean = false) {
-    val entries = mutableListOf<JarEntry>()
-    ZipFile(file.canonicalPath).use { zipFile ->
-        val zipEntries: Enumeration<*> = zipFile.entries()
-        while (zipEntries.hasMoreElements()) {
-            val zipEntry = zipEntries.nextElement() as ZipEntry
-            if (zipEntry.isDirectory) continue
-            val fileName: String = zipEntry.name
-            entries.add(JarEntry(fileName, zipFile.getInputStream(zipEntry).readBytes()))
+    try {
+        val entries = mutableListOf<JarEntry>()
+        ZipFile(file.canonicalPath).use { zipFile ->
+            val zipEntries: Enumeration<*> = zipFile.entries()
+            while (zipEntries.hasMoreElements()) {
+                val zipEntry = zipEntries.nextElement() as ZipEntry
+                if (zipEntry.isDirectory) continue
+                val fileName: String = zipEntry.name
+                entries.add(JarEntry(fileName, zipFile.getInputStream(zipEntry).readBytes()))
+            }
         }
-    }
-    val result = PluginScan.scan(JarFile(entries), groupOutput = true)
-    if (result.reports.isEmpty()) {
-        println(white("Nothing found"))
-        println()
-        return
-    }
-    result.reports.forEach { report ->
-        printReport(report)
-    }
-    if (traceErrors) {
-        result.errors.forEach { error ->
-            printError(error)
+        val result = PluginScan.scan(JarFile(entries), groupOutput = true)
+        if (result.reports.isEmpty()) {
+            println(white("Nothing found"))
+            println()
+            return
         }
-    } else if (result.errors.isNotEmpty()) {
-        println(brightRed("${result.errors.size} errors happened during scanning"))
-        println(brightRed("Launch with ${white("--show-errors")} flag to see details"))
+        result.reports.forEach { report ->
+            printReport(report)
+        }
+        if (traceErrors) {
+            result.errors.forEach { error ->
+                printError(error)
+            }
+        } else if (result.errors.isNotEmpty()) {
+            println(brightRed("${result.errors.size} errors happened during scanning"))
+            println(brightRed("Launch with ${white("--show-errors")} flag to see details"))
+            println()
+        }
+    } catch (excetion: Exception) {
+        println(brightRed("Error processing file \"${brightCyan(file.canonicalPath)}\""))
+        if (traceErrors)
+            excetion.printStackTrace()
+        else
+            println(brightRed("Launch with ${white("--show-errors")} flag to see details"))
         println()
     }
 }
