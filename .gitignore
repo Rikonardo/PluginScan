@@ -1,0 +1,10 @@
+/.gradle
+/.idea
+/build
+/kotlin-js-store
+/publish.properties
+
+/preprocessor/build
+/platform-jvm/build
+/platform-jvm/src/test/resources
+/platform-web/build
