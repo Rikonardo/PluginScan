@@ -1,16 +1,19 @@
 package com.rikonardo.pluginscan.framework
 
 import com.rikonardo.cafebabe.ClassFile
+import com.rikonardo.pluginscan.framework.internal.ParsingFailedCheck
 import com.rikonardo.pluginscan.framework.jar.JarFile
 import com.rikonardo.pluginscan.framework.types.*
 import com.rikonardo.pluginscan.preprocessor.generated.checksList
 
 object PluginScan {
-    const val VERSION = "1.0.0"
+    const val VERSION = "1.0.1"
     fun scan(jar: JarFile, sortOutput: Boolean = true, groupOutput: Boolean = false): ScanResult {
         val checks = checksList()
         val reportData = mutableListOf<CheckReport>()
         val errors = mutableListOf<ScanError>()
+        val parsingFailedCheck = ParsingFailedCheck()
+
         for (check in checks) {
             val report: (
                 risk: RiskLevel,
@@ -24,7 +27,24 @@ object PluginScan {
             check.report = report
             try { check.before() } catch (e: Exception) { errors.add(ScanError(check, e, ScanError.Step.BEFORE)) }
         }
-        val classes = jar.files.filter { it.path.endsWith(".class") }.map { ClassFile(it.content) to it.path }
+        val classes = jar.files.filter { it.path.endsWith(".class") }.mapNotNull {
+            try {
+                ClassFile(it.content) to it.path
+            } catch (e: Exception) {
+                reportData.add(
+                    CheckReport(
+                        RiskLevel.HIGH,
+                        "Possible heavy obfuscation",
+                        "Failed to parse class file",
+                        listOf(
+                            ReportEntry.InClass(it.path.substringBeforeLast(".").replace("/", "."))
+                        ),
+                        parsingFailedCheck
+                    )
+                )
+                null
+            }
+        }
         for (classEntry in classes) {
             for (check in checks) {
                 if (errors.any { it.check == check && it.step == ScanError.Step.BEFORE }) continue

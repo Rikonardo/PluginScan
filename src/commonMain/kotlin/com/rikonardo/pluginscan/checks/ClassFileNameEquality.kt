@@ -15,7 +15,7 @@ class ClassFileNameEquality : Check() {
             RiskLevel.LOW,
             "Broken class (may be result of renaming/injection)",
             "Class name doesn't match its file name",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

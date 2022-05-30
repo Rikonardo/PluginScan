@@ -18,7 +18,7 @@ class PermissionAttachments : Check() {
             RiskLevel.MODERATE,
             "This plugin may be able to spoof player permissions",
             "PermissionAttachments api reference found",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

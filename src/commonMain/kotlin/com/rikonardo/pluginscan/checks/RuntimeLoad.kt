@@ -17,7 +17,7 @@ class RuntimeLoad : Check() {
             RiskLevel.HIGH,
             "Plugin can load native libraries at runtime, possible backdoor dropper",
             "Plugin class references Runtime load or loadLibrary",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

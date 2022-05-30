@@ -34,12 +34,17 @@ val AppRoot = FC<AppRootProps> { props ->
     var scanTime : Int by useState(0)
     fun loadFiles(files: List<Pair<String, ByteArray>>) {
         val startTime = Date.now().toLong()
-        Object.assign(scanResult, PluginScan.scan(JarFile(files.map {
-            JarEntry(it.first, it.second)
-        }), groupOutput = true))
-        scanned = true
-        scanTime = (Date.now() - startTime).toInt()
-        processing = false
+        try {
+            Object.assign(scanResult, PluginScan.scan(JarFile(files.map {
+                JarEntry(it.first, it.second)
+            }), groupOutput = true))
+            scanned = true
+            scanTime = (Date.now() - startTime).toInt()
+            processing = false
+        } catch (e: Exception) {
+            console.error(e)
+            processing = false
+        }
     }
     fun parseJar(data: dynamic) {
         val files = mutableListOf<Pair<String, ByteArray>>()

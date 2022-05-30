@@ -17,7 +17,7 @@ class SetOp : Check() {
             RiskLevel.MODERATE,
             "Plugin can set player's op status",
             "Found setOp method reference",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

@@ -23,7 +23,7 @@ class ObfuscatedConsoleCommands : Check() {
             RiskLevel.LOW,
             "Possible obfuscation of console command execution",
             "ConsoleCommandSender referenced in method args or return type but not in class references",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

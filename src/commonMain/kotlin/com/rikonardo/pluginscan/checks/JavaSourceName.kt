@@ -29,7 +29,7 @@ class JavaSourceName : Check() {
             RiskLevel.LOW,
             "Possible injection or obfuscation",
             "Small group of classes (less than 10) have source file names that does not match class names",
-            list.map { ReportEntry.In(className(it)) }
+            list.map { ReportEntry.InClass(className(it)) }
         )
     }
 }

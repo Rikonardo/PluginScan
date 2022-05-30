@@ -29,7 +29,7 @@ class MultipleMainClasses : Check() {
                     RiskLevel.MODERATE,
                     "Multiple main classes, possible proxy-class injection",
                     "Multiple main classes for platform ${mainClasses[parent]} found",
-                    fileNames.map { ReportEntry.In(className(it)) }
+                    fileNames.map { ReportEntry.InClass(className(it)) }
                 )
             }
         }

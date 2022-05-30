@@ -27,7 +27,7 @@ class DifferentJavaVersion : Check() {
                 RiskLevel.LOW,
                 "Possible class injection (or just a library)",
                 "Small group of classes (less than 10) have different class version (${version.first}.${version.second})",
-                files.map { ReportEntry.In(className(it)) }
+                files.map { ReportEntry.InClass(className(it)) }
             )
         }
     }

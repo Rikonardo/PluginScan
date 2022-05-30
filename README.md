@@ -47,7 +47,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.rikonardo.pluginscan:PluginScan:1.0.0")
+    implementation("com.rikonardo.pluginscan:PluginScan:1.0.1")
 }
 ```
 

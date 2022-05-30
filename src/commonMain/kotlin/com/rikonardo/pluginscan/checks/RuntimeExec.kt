@@ -14,7 +14,7 @@ class RuntimeExec : Check() {
             RiskLevel.CRITICAL,
             "Plugin can execute system commands, probably backdoor",
             "Plugin class references Runtime.exec()",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

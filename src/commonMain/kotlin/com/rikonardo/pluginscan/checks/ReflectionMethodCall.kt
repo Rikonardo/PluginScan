@@ -14,7 +14,7 @@ class ReflectionMethodCall : Check() {
             RiskLevel.LOW,
             "Plugin can hide malicious references by using reflection",
             "Plugin references reflection method invoke API",
-            listOf(ReportEntry.In(className(fileName)))
+            listOf(ReportEntry.InClass(className(fileName)))
         )
     }
 }

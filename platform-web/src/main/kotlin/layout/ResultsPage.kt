@@ -171,7 +171,7 @@ val ResultsPage = FC<ResultsPageProps> { props ->
                         }
                         for (entry in report.entries) {
                             when (entry) {
-                                is ReportEntry.In -> {
+                                is ReportEntry.InClass, is ReportEntry.InAny -> {
                                     p {
                                         css {
                                             margin = 0.px
@@ -189,7 +189,10 @@ val ResultsPage = FC<ResultsPageProps> { props ->
                                                 marginRight = 5.px
                                                 color = Color("#404040")
                                             }
-                                            +entry.classLocation
+                                            +if (entry is ReportEntry.InClass)
+                                                entry.classLocation
+                                            else
+                                                (entry as ReportEntry.InAny).location
                                         }
                                     }
                                 }

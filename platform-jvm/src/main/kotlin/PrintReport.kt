@@ -36,8 +36,10 @@ fun printReport(report: CheckReport) {
     report.entries.forEachIndexed { index, entry ->
         val char = if (index == report.entries.size - 1) "╙" else "╟"
         when (entry) {
-            is ReportEntry.In -> {
-                println(" ${colors.second(char)} ${brightMagenta("in")} ${brightWhite(entry.classLocation)}")
+            is ReportEntry.InClass, is ReportEntry.InAny -> {
+                println(" ${colors.second(char)} ${brightMagenta("in")} ${brightWhite(
+                    if (entry is ReportEntry.InClass) entry.classLocation else (entry as ReportEntry.InAny).location
+                )}")
             }
         }
     }
