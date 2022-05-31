@@ -19,7 +19,7 @@ class ConsoleCommands : Check() {
         ) report(
             RiskLevel.MODERATE,
             "This plugin may be able to execute commands as the console",
-            "ConsoleCommandSender and dispatchCommand method referenced in th same class",
+            "ConsoleCommandSender and dispatchCommand method referenced in the same class",
             listOf(ReportEntry.InClass(className(fileName)))
         )
     }
