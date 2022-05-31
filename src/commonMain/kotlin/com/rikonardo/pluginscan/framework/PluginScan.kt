@@ -7,7 +7,7 @@ import com.rikonardo.pluginscan.framework.types.*
 import com.rikonardo.pluginscan.preprocessor.generated.checksList
 
 object PluginScan {
-    const val VERSION = "1.0.1"
+    const val VERSION = "1.0.2"
     fun scan(jar: JarFile, sortOutput: Boolean = true, groupOutput: Boolean = false): ScanResult {
         val checks = checksList()
         val reportData = mutableListOf<CheckReport>()
