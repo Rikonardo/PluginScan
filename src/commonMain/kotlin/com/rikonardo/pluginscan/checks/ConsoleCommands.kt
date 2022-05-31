@@ -13,8 +13,16 @@ class ConsoleCommands : Check() {
         if (
             classFile.doReferenceMethod("org/bukkit/Server", "dispatchCommand") &&
             (
-                classFile.doReferenceMethod("org/bukkit/Server", "getConsoleSender") ||
-                classFile.doReferenceClass("org/bukkit/command/ConsoleCommandSender")
+                (
+                    classFile.doReferenceMethod("org/bukkit/Server", "getConsoleSender") ||
+                    classFile.doReferenceClass("org/bukkit/command/ConsoleCommandSender")
+                ) || (
+                    classFile.doReferencedInArgTypes("org/bukkit/command/ConsoleCommandSender") ||
+                    (
+                        classFile.doReferencedInReturnTypes("org/bukkit/command/ConsoleCommandSender") &&
+                        classFile.doReferencedInArgTypes("org/bukkit/command/CommandSender")
+                    )
+                )
             )
         ) report(
             RiskLevel.MODERATE,
