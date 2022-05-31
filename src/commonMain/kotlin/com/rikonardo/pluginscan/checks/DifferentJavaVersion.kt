@@ -22,11 +22,11 @@ class DifferentJavaVersion : Check() {
 
     override fun after() {
         if (!lists.any { it.value.size >= 10 }) return
-        for ((version, files) in lists.entries.filter { it.value.size < 10 }) {
+        for ((version, files) in lists.entries.filter { it.value.size <= 10 }) {
             report(
                 RiskLevel.LOW,
                 "Possible class injection (or just a library)",
-                "Small group of classes (less than 10) have different class version (${version.first}.${version.second})",
+                "Small group of classes (10 or less) have different class version (${version.first}.${version.second})",
                 files.map { ReportEntry.InClass(className(it)) }
             )
         }

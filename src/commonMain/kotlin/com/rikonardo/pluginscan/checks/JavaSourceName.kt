@@ -24,11 +24,11 @@ class JavaSourceName : Check() {
     }
 
     override fun after() {
-        if (list.size >= 10 || list.isEmpty()) return
+        if (list.size > 10 || list.isEmpty()) return
         report(
             RiskLevel.LOW,
             "Possible injection or obfuscation",
-            "Small group of classes (less than 10) have source file names that does not match class names",
+            "Small group of classes (10 or less) have source file names that does not match class names",
             list.map { ReportEntry.InClass(className(it)) }
         )
     }
