@@ -10,7 +10,6 @@ fun main() {
     val container = document.createElement("div")
     document.body!!.appendChild(container)
 
-    println(JSZip)
     globalStyle()
     val welcome = AppRoot.create {
         version = PluginScan.VERSION
