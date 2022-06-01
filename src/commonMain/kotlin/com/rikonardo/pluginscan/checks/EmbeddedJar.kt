@@ -19,14 +19,14 @@ class EmbeddedJar : Check() {
                 if (file.path.endsWith(".jar") || file.path.endsWith(".zip")) {
                     report(
                         RiskLevel.HIGH,
-                        "Embedded jar found",
+                        "Embedded jar/zip found",
                         "Found embedded file with zip header signature",
                         listOf(ReportEntry.InAny(file.path))
                     )
                 } else {
                     report(
                         RiskLevel.CRITICAL,
-                        "Hidden embedded jar found",
+                        "Hidden embedded jar/zip found",
                         "Found embedded file with zip header signature and mismatched extension",
                         listOf(ReportEntry.InAny(file.path))
                     )
