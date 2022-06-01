@@ -8,7 +8,7 @@ import com.rikonardo.pluginscan.framework.types.ReportEntry
 import com.rikonardo.pluginscan.framework.types.RiskLevel
 
 @RegisterCheck
-class MultipleListeners : Check() {
+class BukkitMultipleListeners : Check() {
     val listeners = mutableListOf<String>()
 
     override fun processClass(classFile: ClassFile, fileName: String) {

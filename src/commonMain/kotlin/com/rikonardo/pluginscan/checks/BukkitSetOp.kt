@@ -8,7 +8,7 @@ import com.rikonardo.pluginscan.framework.types.ReportEntry
 import com.rikonardo.pluginscan.framework.types.RiskLevel
 
 @RegisterCheck
-class SetOp : Check() {
+class BukkitSetOp : Check() {
     override fun processClass(classFile: ClassFile, fileName: String) {
         if (
             classFile.doReferenceMethod("org/bukkit/entity/Player", "setOp") ||

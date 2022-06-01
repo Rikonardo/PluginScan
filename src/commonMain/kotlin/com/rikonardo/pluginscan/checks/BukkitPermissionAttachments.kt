@@ -8,7 +8,7 @@ import com.rikonardo.pluginscan.framework.types.ReportEntry
 import com.rikonardo.pluginscan.framework.types.RiskLevel
 
 @RegisterCheck
-class PermissionAttachments : Check() {
+class BukkitPermissionAttachments : Check() {
     override fun processClass(classFile: ClassFile, fileName: String) {
         if (
             classFile.doReferenceClass("org/bukkit/permissions/PermissionAttachment") ||

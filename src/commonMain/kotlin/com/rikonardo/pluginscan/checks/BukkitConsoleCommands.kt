@@ -8,7 +8,7 @@ import com.rikonardo.pluginscan.framework.types.ReportEntry
 import com.rikonardo.pluginscan.framework.types.RiskLevel
 
 @RegisterCheck
-class ConsoleCommands : Check() {
+class BukkitConsoleCommands : Check() {
     override fun processClass(classFile: ClassFile, fileName: String) {
         if (
             classFile.doReferenceMethod("org/bukkit/Server", "dispatchCommand") &&
