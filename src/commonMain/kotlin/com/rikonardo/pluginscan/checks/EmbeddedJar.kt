@@ -16,7 +16,11 @@ class EmbeddedJar : Check() {
                 file.content[2] == 0x03.toByte() &&
                 file.content[3] == 0x04.toByte()
             ) {
-                if (file.path.endsWith(".jar") || file.path.endsWith(".zip")) {
+                if (
+                    file.path.endsWith(".jar") ||
+                    file.path.endsWith(".zip") ||
+                    file.path.endsWith(".jarinjar")
+                ) {
                     report(
                         RiskLevel.HIGH,
                         "Embedded jar/zip found",
