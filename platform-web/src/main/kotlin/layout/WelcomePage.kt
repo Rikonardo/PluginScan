@@ -128,6 +128,17 @@ val WelcomePage = FC<WelcomePageProps> { props ->
                 href = "https://github.com/Rikonardo/PluginScan#pluginscan-cli"
                 target = AnchorTarget._blank
             }
+            +" | "
+            a {
+                css {
+                    textDecoration = TextDecoration.none
+                    fontWeight = FontWeight.bold
+                    color = Color("#4680ff")
+                }
+                +"Discord server"
+                href = "https://discord.gg/zYRTPa3FnQ"
+                target = AnchorTarget._blank
+            }
         }
         p {
             css {
