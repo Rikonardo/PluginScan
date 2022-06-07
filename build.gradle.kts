@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.konan.properties.Properties
-
 plugins {
     kotlin("multiplatform") version "1.6.20"
     id("com.google.devtools.ksp")
@@ -7,7 +5,7 @@ plugins {
 }
 
 group = "com.rikonardo.pluginscan"
-version = "1.0.2"
+version = "1.0.3"
 
 repositories {
     mavenCentral()
@@ -86,7 +84,7 @@ dependencies {
 publishing {
     repositories {
         maven {
-            val properties = Properties()
+            val properties = org.jetbrains.kotlin.konan.properties.Properties()
             properties.load(rootProject.file("publish.properties").inputStream())
             url = uri(properties["deployRepoUrl"].toString())
             credentials {

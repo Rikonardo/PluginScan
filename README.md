@@ -5,9 +5,9 @@
 <div align="center">
     <a href="https://github.com/Rikonardo/PluginScan/issues"><img alt="Open issues" src="https://img.shields.io/github/issues-raw/Rikonardo/PluginScan"/></a>
     <a href="https://github.com/Rikonardo/PluginScan/releases/latest"><img alt="GitHub downloads" src="https://img.shields.io/github/downloads/Rikonardo/PluginScan/total"></a>
-    <img alt="Code size" src="https://img.shields.io/github/languages/code-size/Rikonardo/PluginScan"/>
     <img alt="Version" src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fmaven.rikonardo.com%2Freleases%2Fcom%2Frikonardo%2Fpluginscan%2FPluginScan%2Fmaven-metadata.xml"/>
     <a href="https://www.codefactor.io/repository/github/rikonardo/pluginscan"><img alt="CodeFactor" src="https://www.codefactor.io/repository/github/rikonardo/pluginscan/badge"/></a>
+    <a href="https://www.codefactor.io/repository/github/rikonardo/pluginscan"><img alt="Discord" src="https://img.shields.io/discord/982967258013896734?color=%237289DA&label=discord&logo=discord&logoColor=%237289DA"></a>
 </div>
 
 <br>
@@ -47,7 +47,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.rikonardo.pluginscan:PluginScan:1.0.2")
+    implementation("com.rikonardo.pluginscan:PluginScan:1.0.3")
 }
 ```
 
