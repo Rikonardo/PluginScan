@@ -7,7 +7,7 @@
     <a href="https://github.com/Rikonardo/PluginScan/releases/latest"><img alt="GitHub downloads" src="https://img.shields.io/github/downloads/Rikonardo/PluginScan/total"></a>
     <img alt="Version" src="https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fmaven.rikonardo.com%2Freleases%2Fcom%2Frikonardo%2Fpluginscan%2FPluginScan%2Fmaven-metadata.xml"/>
     <a href="https://www.codefactor.io/repository/github/rikonardo/pluginscan"><img alt="CodeFactor" src="https://www.codefactor.io/repository/github/rikonardo/pluginscan/badge"/></a>
-    <a href="https://www.codefactor.io/repository/github/rikonardo/pluginscan"><img alt="Discord" src="https://img.shields.io/discord/982967258013896734?color=%237289DA&label=discord&logo=discord&logoColor=%237289DA"></a>
+    <a href="https://discord.gg/zYRTPa3FnQ"><img alt="Discord" src="https://img.shields.io/discord/982967258013896734?color=7289DA&label=discord&logo=discord&logoColor=7289DA"></a>
 </div>
 
 <br>
@@ -60,9 +60,9 @@ fun main() {
     val entries = mutableListOf<JarEntry>()
     val file = File("plugin.jar")
     ZipFile(file.canonicalPath).use { zipFile ->
-        val zipEntries: Enumeration<*> = zipFile.entries()
+        val zipEntries = zipFile.entries()
         while (zipEntries.hasMoreElements()) {
-            val zipEntry = zipEntries.nextElement() as ZipEntry
+            val zipEntry = zipEntries.nextElement()
             if (zipEntry.isDirectory) continue
             val fileName: String = zipEntry.name
             entries.add(JarEntry(fileName, zipFile.getInputStream(zipEntry).readBytes()))
